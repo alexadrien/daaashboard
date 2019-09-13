@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Responsive, WidthProvider} from 'react-grid-layout';
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
+const GRID_BREAKPOINTS = {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0};
+const GRID_COLS = {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2};
+
+const AppGrid: React.FC = (props) => {
+    return (
+        <div className="App">
+            <ResponsiveGridLayout
+                breakpoints={GRID_BREAKPOINTS}
+                cols={GRID_COLS}>
+                {props.children}
+            </ResponsiveGridLayout>
+        </div>
+    )
+};
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    return (
+        <AppGrid>
+            <div key="1">1</div>
+            <div key="2">2</div>
+            <div key="3">3</div>
+        </AppGrid>
+    );
+};
 
 export default App;
